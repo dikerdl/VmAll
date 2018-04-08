@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VmAll.iml" filepath="$PROJECT_DIR$/VmAll.iml" />
+      <module fileurl="file://E:\517BusinessPros\VmInSample\VmAll.iml" filepath="E:\517BusinessPros\VmInSample\VmAll.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VmInSample.iml" filepath="$PROJECT_DIR$/VmInSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vmLibrary/vmLibrary.iml" filepath="$PROJECT_DIR$/vmLibrary/vmLibrary.iml" />
     </modules>
   </component>
 </project>

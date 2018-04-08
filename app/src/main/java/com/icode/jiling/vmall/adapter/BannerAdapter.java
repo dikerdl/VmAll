@@ -1,0 +1,19 @@
+package com.icode.jiling.vmall.adapter;
+
+import android.support.v4.view.PagerAdapter;
+import android.view.View;
+
+
+public class BannerAdapter extends PagerAdapter {
+
+
+    @Override
+    public int getCount() {
+        return 0;
+    }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return false;
+    }
+}

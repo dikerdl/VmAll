@@ -8,4 +8,32 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--AppTheme使用的主题是AppCompat的主题，而AppCompat主题下的
+        windowActionBar和windowNoTitle的命名方式前都没有android字样-->
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.TransluentBar" parent="AppTheme.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <style name="RadioTheme">
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">@dimen/dimen_5</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">@dimen/dimen_no</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dimen_11</item>
+        <item name="android:textColor">@drawable/navi_select_color</item>
+    </style>
+
 </resources>
