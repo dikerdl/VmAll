@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="status_height">25dp</dimen>
+    <dimen name="tab_width">30dp</dimen>
     <dimen name="dimen_no">0dp</dimen>
     <dimen name="dimen_2">2dp</dimen>
     <dimen name="dimen_3">3dp</dimen>

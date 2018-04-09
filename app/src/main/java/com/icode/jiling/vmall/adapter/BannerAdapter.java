@@ -1,19 +1,11 @@
 package com.icode.jiling.vmall.adapter;
 
-import android.support.v4.view.PagerAdapter;
-import android.view.View;
+import java.util.List;
 
 
-public class BannerAdapter extends PagerAdapter {
+public class BannerAdapter extends CommentPagerAdapter {
 
-
-    @Override
-    public int getCount() {
-        return 0;
-    }
-
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return false;
+    public BannerAdapter(List list, int layoutId, int variableId) {
+        super(list, layoutId, variableId);
     }
 }

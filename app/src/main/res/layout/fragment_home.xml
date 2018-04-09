@@ -5,14 +5,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:layout_marginLeft="@dimen/dimen_14"
+            android:layout_marginRight="@dimen/dimen_14"
+            android:background="@drawable/round_circle_rec"
+            android:padding="@dimen/dimen_7"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_search_gray"
+                android:layout_marginLeft="@dimen/dimen_5"/>
+        </LinearLayout>
+    </FrameLayout>
     <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/top_navi"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_30"
         android:background="@color/colorAccent"
         app:tl_indicator_color="@color/colorWhite"
-        app:tl_indicator_width="@dimen/dimen_25" />
+        app:tl_indicator_width="@dimen/tab_width" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_anim"

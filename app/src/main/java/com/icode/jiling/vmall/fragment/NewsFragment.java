@@ -15,6 +15,7 @@ import com.icode.jiling.vmall.adapter.AnimPagerAdapter;
 import com.icode.jiling.vmall.fragment.home.AnimFanFragment;
 import com.icode.jiling.vmall.fragment.home.AnimLiveFragment;
 import com.icode.jiling.vmall.fragment.home.AnimRecFragment;
+import com.icode.jiling.vmall.fragment.news.DoubanVideoFragment;
 
 import java.util.ArrayList;
 
@@ -56,11 +57,22 @@ public class NewsFragment extends Fragment {
         LayoutInflater li = this.getLayoutInflater();
         ArrayList<Fragment> aList = new ArrayList<>();
         ArrayList<String> listTitles = new ArrayList<>();
-        aList.add(AnimRecFragment.newInstance());
-        aList.add(AnimLiveFragment.newInstance());
+        aList.add(DoubanVideoFragment.newInstance());
+        aList.add(DoubanVideoFragment.newInstance());
+        aList.add(DoubanVideoFragment.newInstance());
+        aList.add(DoubanVideoFragment.newInstance());
+        aList.add(DoubanVideoFragment.newInstance());
+        aList.add(DoubanVideoFragment.newInstance());
+        aList.add(DoubanVideoFragment.newInstance());
 
-        listTitles.add("番剧");
-        listTitles.add("直播");
+        listTitles.add("豆瓣");
+        listTitles.add("热点");
+        listTitles.add("新闻");
+        listTitles.add("军事");
+        listTitles.add("国际");
+        listTitles.add("娱乐");
+        listTitles.add("体育");
+
 
         mAnimViewPager.setAdapter(new AnimPagerAdapter(getChildFragmentManager(),aList,listTitles));
         mTabLayout.setViewPager(mAnimViewPager);

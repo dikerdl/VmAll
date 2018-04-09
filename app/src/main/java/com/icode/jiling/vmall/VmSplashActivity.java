@@ -1,18 +1,20 @@
 package com.icode.jiling.vmall;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.icode.jiling.vmall.adapter.ViewBindAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.icode.jiling.vmall.BR;
 
 /**
  * 启动页
@@ -23,33 +25,32 @@ public class VmSplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+
+        ViewDataBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
 
         SimpleDraweeView mGuideSdv = findViewById(R.id.sdv_guide);
         final Timer timer = new Timer();
-        TimerTask task = new TimerTask(){
+        TimerTask task = new TimerTask() {
 
             @Override
             public void run() {
-                try{
+                try {
                     runOnUiThread(() -> {
-                        DraweeController mDraweeController = Fresco.newDraweeControllerBuilder()
-                                .setAutoPlayAnimations(true)
-                                .setUri(Uri.parse("res://"+getPackageName()+"/"+R.drawable.guide))
-                                .build();
-                        mGuideSdv.setController(mDraweeController);
+                        //ViewBindAdapter.setDynamicImgUrl(mGuideSdv, "res://" + getPackageName() + "/" + R.drawable.guide);
+                        viewDataBinding.setVariable(BR.splash,"res://" + getPackageName() + "/" + R.drawable.guide);
                         new Handler().postDelayed(() -> {
-                            startActivity(new Intent(VmSplashActivity.this,MainActivity.class));
+                            startActivity(new Intent(VmSplashActivity.this, MainActivity.class));
                             finish();
-                            overridePendingTransition(R.anim.fade_in,0);
-                        },3000);
+                            overridePendingTransition(R.anim.fade_in, 0);
+                        }, 2500);
+
                     });
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     timer.cancel();
                 }
             }
         };
-        timer.schedule(task,1500);
+        timer.schedule(task, 1500);
     }
 }

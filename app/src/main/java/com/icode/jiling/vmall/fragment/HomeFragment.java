@@ -57,8 +57,8 @@ public class HomeFragment extends Fragment {
         ArrayList<Fragment> aList = new ArrayList<>();
         ArrayList<String> listTitles = new ArrayList<>();
         aList.add(AnimRecFragment.newInstance());
-        aList.add(AnimLiveFragment.newInstance());
         aList.add(AnimFanFragment.newInstance());
+        aList.add(AnimLiveFragment.newInstance());
 
         listTitles.add("推荐");
         listTitles.add("番剧");

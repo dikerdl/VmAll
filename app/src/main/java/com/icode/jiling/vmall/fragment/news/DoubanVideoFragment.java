@@ -1,4 +1,4 @@
-package com.icode.jiling.vmall.fragment.home;
+package com.icode.jiling.vmall.fragment.news;
 
 
 import android.os.Bundle;
@@ -11,25 +11,25 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.icode.jiling.vmall.R;
-import com.icode.jiling.vmall.interfaces.FanCallBack;
-import com.icode.jiling.vmall.viewmodel.AnimFan;
+import com.icode.jiling.vmall.interfaces.BannerCallBack;
+import com.icode.jiling.vmall.interfaces.DoubanCallBack;
+import com.icode.jiling.vmall.viewmodel.BannerModel;
+import com.icode.jiling.vmall.viewmodel.DoubanSubject;
 
 
 /**
- * 动画-番剧
+ * 动画-推荐
  */
-public class AnimFanFragment extends Fragment {
-    private static final String TAG = "AnimFanFragment";
+public class DoubanVideoFragment extends Fragment {
+
+
+    private static final String TAG = "DoubanVideoFragment";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.view_anim_fan,container,false);
-        initView(view);
+        View view = inflater.inflate(R.layout.view_douban_video,container,false);
         return view;
-    }
-
-    private void initView(View view) {
-
     }
 
     @Override
@@ -40,12 +40,12 @@ public class AnimFanFragment extends Fragment {
     }
 
     private void initData() {
-        AnimFan.getAnimFanData(System.currentTimeMillis()+"",new FanCallBack() {
+        DoubanSubject.getDoubanData(1,28,new DoubanCallBack() {
             @Override
-            public void onSuccess(AnimFan response) {
+            public void onSuccess(DoubanSubject response) {
                 try {
                     if (response != null) {
-                        Toast.makeText(getContext(), "TAG:" + response.getResult().getAd().size(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "TAG:" + response.getTitle(), Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e){
                     Log.e(TAG,"error: "+e.getMessage());
@@ -64,7 +64,8 @@ public class AnimFanFragment extends Fragment {
 
     }
 
+
     public static Fragment newInstance() {
-        return new AnimFanFragment();
+        return new DoubanVideoFragment();
     }
 }
