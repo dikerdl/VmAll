@@ -1,10 +1,14 @@
 package com.icode.jiling.vmall.fragment;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +16,12 @@ import android.view.ViewGroup;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.icode.jiling.vmall.R;
 import com.icode.jiling.vmall.adapter.AnimPagerAdapter;
+import com.icode.jiling.vmall.databinding.HomeBinding;
 import com.icode.jiling.vmall.fragment.home.AnimFanFragment;
 import com.icode.jiling.vmall.fragment.home.AnimLiveFragment;
 import com.icode.jiling.vmall.fragment.home.AnimRecFragment;
+import com.icode.jiling.vmall.viewmodel.DataBean;
+import com.icode.jiling.vmlibrary.handler.VmHandler;
 
 import java.util.ArrayList;
 
@@ -31,6 +38,8 @@ public class HomeFragment extends Fragment {
     private SlidingTabLayout mTabLayout;
 
     private ViewPager mAnimViewPager;
+
+    private ArrayList<Fragment> aList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +63,7 @@ public class HomeFragment extends Fragment {
 
     private void initEvent() {
         LayoutInflater li = this.getLayoutInflater();
-        ArrayList<Fragment> aList = new ArrayList<>();
+        aList = new ArrayList<>();
         ArrayList<String> listTitles = new ArrayList<>();
         aList.add(AnimRecFragment.newInstance());
         aList.add(AnimFanFragment.newInstance());
@@ -71,6 +80,31 @@ public class HomeFragment extends Fragment {
     private void initView(View view) {
         mAnimViewPager = view.findViewById(R.id.vp_anim);
         mTabLayout = view.findViewById(R.id.top_navi);
+
+        HomeBinding homeBinding = DataBindingUtil.bind(view);
+        homeBinding.setBannerHandler(new VmHandler());
+
+        homeBinding.etAnimFilter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!TextUtils.isEmpty(s.toString().trim())){
+                    if(aList.get(0) != null){
+                        AnimRecFragment recAnim = (AnimRecFragment) aList.get(0);
+                        recAnim.setRecFresh(s.toString().trim());
+                    }
+                }
+            }
+        });
     }
 
     public static HomeFragment newInstance(){

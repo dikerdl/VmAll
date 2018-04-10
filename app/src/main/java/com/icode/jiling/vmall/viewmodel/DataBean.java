@@ -1,14 +1,17 @@
 package com.icode.jiling.vmall.viewmodel;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
+import com.icode.jiling.vmall.BR;
 
 import java.io.Serializable;
 import java.util.List;
 
-public  class DataBean implements Serializable,Comparable{
+public  class DataBean extends BaseObservable implements Serializable,Comparable{
         /**
          * param : 0
          * goto : banner
@@ -192,12 +195,17 @@ public  class DataBean implements Serializable,Comparable{
             this.tid = tid;
         }
 
+        @Bindable
         public String getTname() {
             return tname;
         }
 
         public void setTname(String tname) {
             this.tname = tname;
+            if(!TextUtils.isEmpty(tname)) {
+                this.tname = "M测试Success";
+                notifyPropertyChanged(BR.tname);
+            }
         }
 
         public int getCtime() {

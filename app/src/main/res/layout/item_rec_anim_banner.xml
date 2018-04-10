@@ -6,7 +6,6 @@
             type="com.icode.jiling.vmall.viewmodel.BannerItemBean"/>
     </data>
     <RelativeLayout
-        xmlns:app="http://schemas.android.com/tools"
         xmlns:fresco="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -17,14 +16,9 @@
             android:layout_height="@dimen/dimen_100"
             android:background="@color/colorGray"
             fresco:actualImageScaleType="fitCenter"
-            fresco:roundedCornerRadius="@dimen/dimen_5"
+            fresco:roundedCornerRadius="@dimen/dimen_3"
             android:image_url="@{banner.image}"
             android:zip_able="@{true}"
         />
-        <!--<TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:text="@{banner.title}"/>-->
     </RelativeLayout>
 </layout>

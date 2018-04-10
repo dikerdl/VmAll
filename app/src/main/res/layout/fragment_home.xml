@@ -1,43 +1,71 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-    <FrameLayout
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="HomeBinding">
+        <variable
+            name="bannerHandler"
+            type="com.icode.jiling.vmlibrary.handler.VmHandler" />
+    </data>
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_5"
-            android:layout_marginLeft="@dimen/dimen_14"
-            android:layout_marginRight="@dimen/dimen_14"
-            android:background="@drawable/round_circle_rec"
-            android:padding="@dimen/dimen_7"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
+            android:background="@color/colorAccent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_search_gray"
-                android:layout_marginLeft="@dimen/dimen_5"/>
-        </LinearLayout>
-    </FrameLayout>
-    <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/top_navi"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_30"
-        android:background="@color/colorAccent"
-        app:tl_indicator_color="@color/colorWhite"
-        app:tl_indicator_width="@dimen/tab_width" />
+                android:layout_marginLeft="@dimen/dimen_14"
+                android:layout_marginRight="@dimen/dimen_14"
+                android:layout_marginTop="@dimen/dimen_5"
+                android:background="@drawable/round_circle_rec"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_3">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_anim"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_7"
+                    android:src="@drawable/icon_search_gray"
+                    android:onClick="@{(view)->bannerHandler.myOnClick(view,&quot;Search&quot;)}"/>
 
-    </android.support.v4.view.ViewPager>
+                <EditText
+                    android:id="@+id/et_anim_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_3"
+                    android:background="@null"
+                    android:hint="火影忍者"
+                    android:textColor="@color/colorDeepGray"
+                    android:textColorHint="@color/colorDeepGray"
+                    android:textSize="@dimen/dimen_14"
+                    android:onClick="@{bannerHandler::myOnClick}"/>
+            </LinearLayout>
+        </FrameLayout>
 
-</LinearLayout>
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/top_navi"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_30"
+            android:background="@color/colorAccent"
+            app:tl_indicator_color="@color/colorWhite"
+            app:tl_indicator_width="@dimen/tab_width" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_anim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+</layout>

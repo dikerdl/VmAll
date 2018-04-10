@@ -23,6 +23,7 @@ import com.icode.jiling.vmall.BR;
 import com.icode.jiling.vmall.R;
 import com.icode.jiling.vmall.adapter.BannerAdapter;
 import com.icode.jiling.vmall.adapter.MyRecAdapter;
+import com.icode.jiling.vmall.databinding.ItemRecAnimBannerBinding;
 import com.icode.jiling.vmall.interfaces.BannerCallBack;
 import com.icode.jiling.vmall.viewmodel.BannerItemBean;
 import com.icode.jiling.vmall.viewmodel.BannerModel;
@@ -122,6 +123,7 @@ public class AnimRecFragment extends Fragment {
         mBannerAdapter = new BannerAdapter(mBannerLists,R.layout.item_rec_anim_banner, BR.banner);
         mBannerViewPager.setAdapter(mBannerAdapter);
         mRecRecyclerView.setAdapter(myRecAdapter);
+
     }
 
     private void initData() {
@@ -156,7 +158,6 @@ public class AnimRecFragment extends Fragment {
                             mRecLists.addAll(dataBeanList);
                             myRecAdapter.notifyDataSetChanged();
                         }
-                        Toast.makeText(getContext(), "TAG:" + response.getData().get(3).getTitle(), Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e){
                     Log.e(TAG,"error: "+e.getMessage());
@@ -266,4 +267,13 @@ public class AnimRecFragment extends Fragment {
         return new AnimRecFragment();
     }
 
+    public void setRecFresh(String s) {
+        if(!mRecLists.isEmpty()) {
+            for (DataBean dataBean : mRecLists) {
+                if(dataBean.getTname().contains(s)) {
+                    dataBean.setTname(s);
+                }
+            }
+        }
+    }
 }
