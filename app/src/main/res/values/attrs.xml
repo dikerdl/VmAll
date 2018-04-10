@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="imgStyle">
+    <!--<declare-styleable name="imgStyle">
         <attr name="image_url">String</attr>
-        <attr name="dynamic_url">String</attr>
-    </declare-styleable>
+        <attr name="android:dynamic_url">String</attr>
+    </declare-styleable>-->
 </resources>

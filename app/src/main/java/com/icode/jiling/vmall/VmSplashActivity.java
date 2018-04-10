@@ -8,13 +8,8 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.icode.jiling.vmall.adapter.ViewBindAdapter;
-
 import java.util.Timer;
 import java.util.TimerTask;
-
-import com.icode.jiling.vmall.BR;
 
 /**
  * 启动页
@@ -25,10 +20,7 @@ public class VmSplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ViewDataBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
-
-        SimpleDraweeView mGuideSdv = findViewById(R.id.sdv_guide);
+        ViewDataBinding mSplashBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash_splash);
         final Timer timer = new Timer();
         TimerTask task = new TimerTask() {
 
@@ -36,8 +28,7 @@ public class VmSplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     runOnUiThread(() -> {
-                        //ViewBindAdapter.setDynamicImgUrl(mGuideSdv, "res://" + getPackageName() + "/" + R.drawable.guide);
-                        viewDataBinding.setVariable(BR.splash,"res://" + getPackageName() + "/" + R.drawable.guide);
+                        mSplashBinding.setVariable(BR.splash,"res://" + getPackageName() + "/" + R.drawable.guide);
                         new Handler().postDelayed(() -> {
                             startActivity(new Intent(VmSplashActivity.this, MainActivity.class));
                             finish();
