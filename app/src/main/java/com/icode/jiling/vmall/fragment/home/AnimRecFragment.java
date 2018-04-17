@@ -40,6 +40,8 @@ public class AnimRecFragment extends Fragment {
 
     private static final String TAG = "AnimRecFragment";
 
+    private static AnimRecFragment animRecFragment;
+
     private SwipeRefreshLayout mSwipeLayout;
 
     private RecyclerView mRecRecyclerView;
@@ -85,6 +87,7 @@ public class AnimRecFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         if(view == null) {
             view = inflater.inflate(R.layout.view_anim_rec, container, false);
             initView(view);
@@ -137,6 +140,9 @@ public class AnimRecFragment extends Fragment {
                 try {
                     if (response != null) {
                         List<DataBean>  dataBeanList = response.getData();
+                        for (DataBean sd:dataBeanList) {
+                            Log.e("---duration:",sd.getDuration()+"");
+                        }
                         if(dataBeanList.get(0).getBanner_item() != null && !dataBeanList.get(0).getBanner_item().isEmpty()){
                             if(mBannerLists.isEmpty()) {
                                 view.findViewById(R.id.fl_banner).setVisibility(View.VISIBLE);
@@ -174,11 +180,7 @@ public class AnimRecFragment extends Fragment {
     private void initEvent() {
         mBannerViewPager.setOnTouchListener((v, event) -> {
             mBannerViewPager.getParent().requestDisallowInterceptTouchEvent(true);
-            if (mSwipeLayout.isRefreshing()  || mIsLoadingMore) {
-                return true;
-            } else {
-                return false;
-            }
+            return false;
         });
         mBannerViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -263,8 +265,11 @@ public class AnimRecFragment extends Fragment {
     }
 
 
-    public static Fragment newInstance() {
-        return new AnimRecFragment();
+    public static AnimRecFragment newInstance() {
+        if(animRecFragment == null){
+            animRecFragment = new AnimRecFragment();
+        }
+        return animRecFragment;
     }
 
     public void setRecFresh(String s) {

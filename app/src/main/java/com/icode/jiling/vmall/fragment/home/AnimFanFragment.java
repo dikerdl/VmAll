@@ -20,15 +20,22 @@ import com.icode.jiling.vmall.viewmodel.AnimFan;
  */
 public class AnimFanFragment extends Fragment {
     private static final String TAG = "AnimFanFragment";
+
+    private static AnimFanFragment animFanFragment;
+
+    private View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.view_anim_fan,container,false);
-        initView(view);
+        if(view == null) {
+            view = inflater.inflate(R.layout.view_anim_fan, container, false);
+            initView();
+        }
         return view;
     }
 
-    private void initView(View view) {
+    private void initView() {
 
     }
 
@@ -64,7 +71,10 @@ public class AnimFanFragment extends Fragment {
 
     }
 
-    public static Fragment newInstance() {
-        return new AnimFanFragment();
+    public static AnimFanFragment newInstance() {
+        if(animFanFragment == null){
+            animFanFragment = new AnimFanFragment();
+        }
+        return animFanFragment;
     }
 }

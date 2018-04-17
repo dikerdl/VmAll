@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
@@ -31,6 +32,8 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends Fragment {
 
+    private static HomeFragment homeFragment;
+
     private SwipeRefreshLayout mSwipeLayout;
 
     private ViewPager mBanner;
@@ -41,6 +44,8 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<Fragment> aList;
 
+    private View view;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +54,10 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        initView(view);
+        if(view == null) {
+            view = inflater.inflate(R.layout.fragment_home, container, false);
+            initView();
+        }
         return view;
     }
 
@@ -77,7 +84,7 @@ public class HomeFragment extends Fragment {
         mTabLayout.setViewPager(mAnimViewPager);
     }
 
-    private void initView(View view) {
+    private void initView() {
         mAnimViewPager = view.findViewById(R.id.vp_anim);
         mTabLayout = view.findViewById(R.id.top_navi);
 
@@ -108,6 +115,14 @@ public class HomeFragment extends Fragment {
     }
 
     public static HomeFragment newInstance(){
-        return new HomeFragment();
+        if(homeFragment == null){
+            homeFragment = new HomeFragment();
+        }
+        return homeFragment;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

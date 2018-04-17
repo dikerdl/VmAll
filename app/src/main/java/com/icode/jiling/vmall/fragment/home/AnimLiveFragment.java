@@ -24,15 +24,20 @@ public class AnimLiveFragment extends Fragment {
 
     private static final String TAG = "AnimLiveFragment";
 
+    private static AnimLiveFragment animLiveFragment;
+
+    private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.view_anim_live,container,false);
-        initView(view);
+        if(view == null) {
+            view = inflater.inflate(R.layout.view_anim_live, container, false);
+            initView();
+        }
         return view;
     }
 
-    private void initView(View view) {
+    private void initView() {
 
     }
 
@@ -74,7 +79,10 @@ public class AnimLiveFragment extends Fragment {
     }
 
 
-    public static Fragment newInstance() {
-        return new AnimLiveFragment();
+    public static AnimLiveFragment newInstance() {
+        if(animLiveFragment == null){
+            animLiveFragment = new AnimLiveFragment();
+        }
+        return animLiveFragment;
     }
 }

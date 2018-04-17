@@ -3,6 +3,7 @@ package com.icode.jiling.vmall.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
  */
 public class NewsFragment extends Fragment {
 
+    private static NewsFragment newsFragment;
+
     private SwipeRefreshLayout mSwipeLayout;
 
     private ViewPager mBanner;
@@ -32,6 +35,8 @@ public class NewsFragment extends Fragment {
     private SlidingTabLayout mTabLayout;
 
     private ViewPager mAnimViewPager;
+
+    private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,8 +46,10 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news, container, false);
-        initView(view);
+        if(view == null) {
+            view = inflater.inflate(R.layout.fragment_news, container, false);
+            initView();
+        }
         return view;
     }
 
@@ -78,12 +85,15 @@ public class NewsFragment extends Fragment {
         mTabLayout.setViewPager(mAnimViewPager);
     }
 
-    private void initView(View view) {
+    private void initView() {
         mAnimViewPager = view.findViewById(R.id.vp_news);
         mTabLayout = view.findViewById(R.id.top_navi_news);
     }
 
     public static NewsFragment newInstance(){
-        return new NewsFragment();
+        if(newsFragment == null){
+            newsFragment = new NewsFragment();
+        }
+        return newsFragment;
     }
 }
